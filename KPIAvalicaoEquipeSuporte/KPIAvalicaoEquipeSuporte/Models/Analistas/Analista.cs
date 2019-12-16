@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using KPIAvalicaoEquipeSuporte.Models.Atendimentos;
+using System.Collections.Generic;
 
-namespace KPIAvalicaoEquipeSuporte.Models.Analist
+namespace KPIAvalicaoEquipeSuporte.Models.Analista
 {
     public class Analista
     {
@@ -9,6 +10,5 @@ namespace KPIAvalicaoEquipeSuporte.Models.Analist
         public string NomeCompleto { get; set; }
         public decimal Salario { get; set; }
         public IEnumerable<Atendimento> Atendimentos { get; set; }
-
     }
 }

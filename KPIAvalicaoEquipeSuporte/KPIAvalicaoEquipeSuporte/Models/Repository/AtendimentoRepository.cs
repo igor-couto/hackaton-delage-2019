@@ -1,5 +1,5 @@
 ﻿using Dapper;
-using KPIAvalicaoEquipeSuporte.Models.Analist;
+using KPIAvalicaoEquipeSuporte.Models.Atendimentos;
 using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
@@ -14,7 +14,8 @@ namespace KPIAvalicaoEquipeSuporte.Models.Repository
             var parameters = new DynamicParameters();
             parameters.Add("IdAnalista", IdAnalista, DbType.Int32);
 
-            var sql = @"";
+            var sql = @"SELECT 
+";
 
             using (_conn)
             {
