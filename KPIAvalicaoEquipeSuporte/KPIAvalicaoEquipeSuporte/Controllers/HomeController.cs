@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using KPIAvalicaoEquipeSuporte.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using KPIAvalicaoEquipeSuporte.Models;
+using System.Diagnostics;
 
 namespace KPIAvalicaoEquipeSuporte.Controllers
 {

@@ -9,6 +9,5 @@ namespace KPIAvalicaoEquipeSuporte.Models.Repository
     {
         private readonly IConfiguration _config;
         protected SqlConnection _conn { get { return new SqlConnection(_config.GetConnectionString("SqlConnection")); } }
-
     }
 }
