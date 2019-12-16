@@ -1,44 +1,49 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-    <container>
-        <form action="@Url.Action("Home", "Filtra")" method="post">
-            <div class="form-row">
-                <div class="col-md-4 mb-3">
-                    <label for="Analista">Analista</label>
-                    <input type="text" class="form-control" id="Analista" value="" required>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <label for="DataInicio">Data Inicio</label>
-                    <input type="text" class="form-control" id="DataInicio" value="" required>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <label for="DataFinal">Data Final</label>
-                    <input type="text" class="form-control" id="DataFinal" value="" required>
-                </div>
+<container>
+    <form action="@Url.Action("Home", "Filtra")" method="post">
+
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="TipoDeGrafico">Tipo De Grafico</label>
+                <select class="form-control" id="TipoDeGrafico" onchange="mudaTipoGrafico()" required>
+                    <option value="PontuacaoGeral">Pontuação Geral</option>
+                    <option value="PontuacaoNaMedia">Pontuação na Média</option>
+                    <option value="PontuacaoDoAnalista">Pontuação do Analista</option>
+                </select>
             </div>
 
-            <div class="form-row">
-                <div class="col-md-4 mb-3">
-                    <label for="Situacao">Situação</label>
-                    @*<input type="text" class="form-control" id="situacao" value="" required>*@
-                    <select class="form-control" id="situacao" required>
-                        <option selected>Todas</option>
-                        <option value="EmAberto">Em aberto</option>
-                        <option value="Fechado">Fechado</option>
-                    </select>
-                </div>
+            <div class="col-md-4 mb-3" id="escolhaAnalista">
+                <label for="Analista">Analista</label>
+                <select class="form-control" id="Analista" required>
+                    <option value="1">Gabriele</option>
+                    <option value="2">Carol</option>
+                    <option value="3">Ricardo</option>
+                </select>
             </div>
-
-            <button type="submit" class="btn btn-primary">Filtrar</button>
-        </form>
-    </container>
-
-    <container>
-        <div class="text-center">
-            <canvas id="myChart" style="display: block; width: 983px; height: 491px;" width="983" height="491" class="chartjs-render-monitor"></canvas>
         </div>
-    </container>
+
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="DataInicio">Data Inicio</label>
+                <input type="text" class="form-control" id="DataInicio" value="" required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="DataFinal">Data Final</label>
+                <input type="text" class="form-control" id="DataFinal" value="" required>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Filtrar</button>
+    </form>
+</container>
+
+<container>
+    <div class="text-center">
+        <canvas id="myChart" style="display: block; width: 983px; height: 491px;" width="983" height="491" class="chartjs-render-monitor"></canvas>
+    </div>
+</container>
 
 <script>
     var ctx = document.getElementById('myChart').getContext('2d');
@@ -79,4 +84,18 @@
         }
     });
 
+    mudaTipoGrafico();
+
+    function mudaTipoGrafico()
+    {
+        var selectTipoDeGrafico = document.getElementById("TipoDeGrafico");
+        var tipoSelecionado = selectTipoDeGrafico.options[selectTipoDeGrafico.selectedIndex].value;
+
+        var analista = document.getElementById("escolhaAnalista");
+
+        if (tipoSelecionado == "PontuacaoDoAnalista")
+            analista.style.visibility = 'visible';
+        else
+            analista.style.visibility = 'hidden';
+    }
 </script>
