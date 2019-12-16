@@ -1,4 +1,5 @@
 ﻿using KPIAvalicaoEquipeSuporte.Models;
+using KPIAvalicaoEquipeSuporte.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
@@ -17,6 +18,11 @@ namespace KPIAvalicaoEquipeSuporte.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        public IActionResult Filtra(FiltroViewModel filtro) 
+        {
+            return null;
         }
 
         public IActionResult Privacy()
