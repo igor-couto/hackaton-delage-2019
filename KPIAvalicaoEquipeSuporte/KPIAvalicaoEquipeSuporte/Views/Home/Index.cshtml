@@ -79,10 +79,10 @@
 
     window.onload = function () {
 		var lineChartData = {
-			labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+			labels: ['08/12/19', '09/12/19', '10/12/19', '11/12/19', '12/12/19', '13/12/19', '14/12/19'],
             datasets: [
                 {
-				label: 'My First dataset',
+				label: 'Gabriele',
 				borderColor: window.chartColors.red,
 				backgroundColor: window.chartColors.red,
 				fill: false,
@@ -99,7 +99,7 @@
             },
 
             {
-				label: 'My Second dataset',
+				label: 'Carol',
 				borderColor: window.chartColors.blue,
 				backgroundColor: window.chartColors.blue,
 				fill: false,
@@ -113,7 +113,25 @@
 					randomScalingFactor()
 				],
 				yAxisID: 'y-axis-1'
-            }
+            },
+
+            {
+				label: 'Ricardo',
+                borderColor: window.chartColors.orange,
+                backgroundColor: window.chartColors.orange,
+				fill: false,
+				data: [
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor()
+				],
+				yAxisID: 'y-axis-1'
+            },
+
             ]
         };
 
@@ -126,11 +144,13 @@
 				responsive: true,
 				hoverMode: 'index',
 				stacked: false,
-				title: {
+                title:
+                {
 					display: true,
 					text: tituloDoGrafico
 				},
-				scales: {
+                scales:
+                {
 					yAxes: [{
 						type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
 						display: true,
@@ -140,13 +160,6 @@
 				}
 			}
 		});
-
-
-
-
-
-
-
     };
 </script>
 
