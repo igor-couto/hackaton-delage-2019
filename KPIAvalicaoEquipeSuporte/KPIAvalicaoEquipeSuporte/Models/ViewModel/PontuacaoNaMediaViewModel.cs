@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace KPIAvalicaoEquipeSuporte.Models.ViewModel
 {
-    public class MontaPontuacaoNaMediaViewModel
+    public class PontuacaoNaMediaViewModel
     {
     }
 }

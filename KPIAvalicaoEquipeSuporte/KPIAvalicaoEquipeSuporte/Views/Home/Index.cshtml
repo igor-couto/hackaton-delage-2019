@@ -1,95 +1,72 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-<container>
-    <form action="@Url.Action("Home", "Filtra")" method="post">
 
-        <div class="form-row">
-            <div class="col-md-4 mb-3">
-                <label for="TipoDeGrafico">Tipo De Grafico</label>
-                <select class="form-control" id="TipoDeGrafico" onchange="mudaTipoGrafico()" required>
-                    <option value="PontuacaoGeral">Pontuação Geral</option>
-                    <option value="PontuacaoNaMedia">Pontuação na Média</option>
-                    <option value="PontuacaoDoAnalista">Pontuação do Analista</option>
-                </select>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <form action="@Url.Action("Home", "Filtra")" method="post">
+
+            <div class="form-row">
+                <div class="col-md-4 mb-3">
+                    <label for="TipoDeGrafico">Tipo De Grafico</label>
+                    <select class="form-control" id="TipoDeGrafico" onchange="mudaTipoGrafico()" required>
+                        <option value="PontuacaoGeral">Pontuação Geral</option>
+                        <option value="PontuacaoNaMedia">Pontuação na Média</option>
+                        <option value="PontuacaoDoAnalista">Pontuação do Analista</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4 mb-3" id="escolhaAnalista">
+                    <label for="Analista">Analista</label>
+                    <select class="form-control" id="Analista" required>
+                        <option value="1">Gabriele</option>
+                        <option value="2">Carol</option>
+                        <option value="3">Ricardo</option>
+                    </select>
+                </div>
             </div>
 
-            <div class="col-md-4 mb-3" id="escolhaAnalista">
-                <label for="Analista">Analista</label>
-                <select class="form-control" id="Analista" required>
-                    <option value="1">Gabriele</option>
-                    <option value="2">Carol</option>
-                    <option value="3">Ricardo</option>
-                </select>
+            <div class="form-row">
+                <div class="col-md-4 mb-3">
+                    <label for="DataInicio">Data Inicio</label>
+                    <input type="text" class="form-control" id="DataInicio" value="" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="DataFinal">Data Final</label>
+                    <input type="text" class="form-control" id="DataFinal" value="" required>
+                </div>
             </div>
-        </div>
 
-        <div class="form-row">
-            <div class="col-md-4 mb-3">
-                <label for="DataInicio">Data Inicio</label>
-                <input type="text" class="form-control" id="DataInicio" value="" required>
-            </div>
-            <div class="col-md-4 mb-3">
-                <label for="DataFinal">Data Final</label>
-                <input type="text" class="form-control" id="DataFinal" value="" required>
-            </div>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Filtrar</button>
-    </form>
-</container>
-
-<container>
-    <div class="text-center">
-        <canvas id="myChart" style="display: block; width: 983px; height: 491px;" width="983" height="491" class="chartjs-render-monitor"></canvas>
+            <button type="submit" class="btn btn-primary">Filtrar</button>
+        </form>
     </div>
-</container>
+</div>
+
+<div>
+    <canvas id="myChart" width="200" height="200"></canvas>
+</div>
 
 <script>
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    });
 
+    var cores = [
+        "rgb(54, 162, 235)",
+        "rgb(75, 192, 192)",
+        "rgb(201, 203, 207)",
+        "rgb(255, 159, 64)",
+        "rgb(153, 102, 255)",
+        "rgb(255, 99, 132)",
+        "rgb(255, 205, 86)"
+    ];
+
+    var tituloDoGrafico = '';
     mudaTipoGrafico();
 
-    function mudaTipoGrafico()
-    {
+    function mudaTipoGrafico() {
         var selectTipoDeGrafico = document.getElementById("TipoDeGrafico");
         var tipoSelecionado = selectTipoDeGrafico.options[selectTipoDeGrafico.selectedIndex].value;
+
+        tituloDoGrafico = selectTipoDeGrafico.options[selectTipoDeGrafico.selectedIndex].text;
 
         var analista = document.getElementById("escolhaAnalista");
 
@@ -98,4 +75,84 @@
         else
             analista.style.visibility = 'hidden';
     }
+
+
+    window.onload = function () {
+		var lineChartData = {
+			labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            datasets: [
+                {
+				label: 'My First dataset',
+				borderColor: window.chartColors.red,
+				backgroundColor: window.chartColors.red,
+				fill: false,
+				data: [
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor()
+				],
+				yAxisID: 'y-axis-1',
+            },
+
+            {
+				label: 'My Second dataset',
+				borderColor: window.chartColors.blue,
+				backgroundColor: window.chartColors.blue,
+				fill: false,
+				data: [
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor(),
+					randomScalingFactor()
+				],
+				yAxisID: 'y-axis-1'
+            }
+            ]
+        };
+
+
+
+        var ctx = document.getElementById('myChart').getContext('2d');
+		window.myLine = Chart.Line(ctx, {
+			data: lineChartData,
+			options: {
+				responsive: true,
+				hoverMode: 'index',
+				stacked: false,
+				title: {
+					display: true,
+					text: tituloDoGrafico
+				},
+				scales: {
+					yAxes: [{
+						type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+						display: true,
+						position: 'left',
+						id: 'y-axis-1',
+					}],
+				}
+			}
+		});
+
+
+
+
+
+
+
+    };
 </script>
+
+
+
+
+
+
+
