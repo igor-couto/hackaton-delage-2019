@@ -23,7 +23,7 @@ namespace KPIAvalicaoEquipeSuporte.Controllers
 
         public IActionResult Filtra(FiltroViewModel filtro) 
         {
-            return null;
+            return PartialView("_graficoPontuacaoGeralPartial");
         }
 
         public IActionResult Privacy()
